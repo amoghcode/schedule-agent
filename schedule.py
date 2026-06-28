@@ -9,5 +9,15 @@ def save_db(filename, data):
     with open(filename,"w") as file:
         json.dump(data, file)
 
-print(load_db())
+data1 = load_db("schedule.json")
+
+print(data1)
+
+data_in_dict = { 
+"tasks": [  { "name": "physics assignemnt", "deadline": "10th June", "priority": "urgent" }  ], 
+"events":[ {"name":"Team meeting", "date":"5th July", "time":"5pm","duration(hours)":1}]  
+}
+
+save_db("schedule.json",data_in_dict)
+
 
