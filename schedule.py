@@ -12,12 +12,7 @@ def save_db(filename, data):
 data1 = load_db("schedule.json")
 
 print(data1)
-
-data_in_dict = { 
-"tasks": [  { "name": "physics assignemnt", "deadline": "10th June", "priority": "urgent" }  ], 
-"events":[ {"name":"Team meeting", "date":"5th July", "time":"5pm","duration(hours)":1}]  
-}
-
-save_db("schedule.json",data_in_dict)
+data1["tasks"].append({"name": "maths assignment", "deadline": "10th June", "priority": "urgent"})
+save_db("schedule.json",data1)
 
 

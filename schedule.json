@@ -1,1 +1,1 @@
-{"tasks": [{"name": "physics assignemnt", "deadline": "10th June", "priority": "urgent"}], "events": [{"name": "Team meeting", "date": "5th July", "time": "5pm", "duration(hours)": 1}]}
+{"tasks": [{"name": "physics assignemnt", "deadline": "10th June", "priority": "urgent"}, {"name": "ML quiz", "deadline": "11th June", "priority": "medium"}, {"name": "maths assignment", "deadline": "10th June", "priority": "urgent"}], "events": [{"name": "Team meeting", "date": "5th July", "time": "5pm", "duration(hours)": 1}]}
