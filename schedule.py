@@ -30,3 +30,9 @@ def read_calendar(filename):
 def list_tasks(filename):
     data = load_db(filename)
     return data["tasks"]
+
+#test
+add_task("schedule.json", "end sem exam","13th June","decent")
+add_event("schedule.json","meet friend","15th June","5pm",1)
+print(read_calendar("schedule.json"))
+print(list_tasks("schedule.json"))
