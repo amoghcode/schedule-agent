@@ -1,5 +1,10 @@
 import json 
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+api_key = os.getenv("GOOGLE_API_KEY")
 
 def load_db(filename):
     with open(filename) as file:
