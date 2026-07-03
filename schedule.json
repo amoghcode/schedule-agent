@@ -3,5 +3,5 @@
            {"name": "maths assignment", "deadline": "10th June", "priority": "urgent"}, 
            {"name": "end sem exam", "deadline": "13th June", "priority": "decent"}], 
 
-  "events": [{"name": "Team meeting", "date": "5th July", "time": "17:00", "duration(hours)": 1}, 
-             {"name": "meet friend", "date": "15th June", "time": "15:00", "duration(hours)": 1}]}
+  "events": [{"name": "Class", "date": "5th July", "time": "9:00", "duration": 1}, 
+             {"name": "Meeting", "date": "5th July", "time": "14:00", "duration": 1}]}
