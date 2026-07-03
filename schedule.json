@@ -1,1 +1,7 @@
-{"tasks": [{"name": "physics assignemnt", "deadline": "10th June", "priority": "urgent"}, {"name": "ML quiz", "deadline": "11th June", "priority": "medium"}, {"name": "maths assignment", "deadline": "10th June", "priority": "urgent"}, {"name": "end sem exam", "deadline": "13th June", "priority": "decent"}], "events": [{"name": "Team meeting", "date": "5th July", "time": "5pm", "duration(hours)": 1}, {"name": "meet friend", "date": "15th June", "time": "5pm", "duration": 1}]}
+{"tasks": [{"name": "physics assignemnt", "deadline": "10th June", "priority": "urgent"},
+           {"name": "ML quiz", "deadline": "11th June", "priority": "medium"},
+           {"name": "maths assignment", "deadline": "10th June", "priority": "urgent"}, 
+           {"name": "end sem exam", "deadline": "13th June", "priority": "decent"}], 
+
+  "events": [{"name": "Team meeting", "date": "5th July", "time": "17:00", "duration(hours)": 1}, 
+             {"name": "meet friend", "date": "15th June", "time": "15:00", "duration(hours)": 1}]}
