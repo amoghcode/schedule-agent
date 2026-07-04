@@ -15,8 +15,16 @@ def save_db(filename, data):
         json.dump(data, file, indent=2)
 
 
+def normalize_date(date: str) -> str:
+    return datetime.strptime(date, "%Y-%m-%d").strftime("%Y-%m-%d")
+
+
+def normalize_time(time: str) -> str:
+    return datetime.strptime(time, "%H:%M").strftime("%H:%M")
+
+
 def get_event_window(time: str, duration: float) -> tuple[datetime, datetime]:
-    start = datetime.strptime(time, "%H:%M")
+    start = datetime.strptime(normalize_time(time), "%H:%M")
     end = start + timedelta(hours=duration)
     return start, end
 
@@ -48,6 +56,8 @@ def add_task(
     """
     data = load_db(DB_FILE)
 
+    deadline = normalize_date(deadline)
+
     data["tasks"].append({"name":name,"deadline":deadline,"priority":priority})
 
     save_db(DB_FILE,data)
@@ -72,10 +82,12 @@ def add_event(
     """
     data = load_db(DB_FILE)
 
+    date = normalize_date(date)
+    time = normalize_time(time)
     new_start, new_end = get_event_window(time, duration)
 
     for event in data["events"]:
-        if event["date"] != date:
+        if normalize_date(event["date"]) != date:
             continue
 
         event_start, event_end = get_event_window(event["time"], event["duration"])
@@ -98,3 +110,64 @@ def read_calendar() -> list[dict]:
         A list of dictionaries representing calendar events.
     """
     data = load_db(DB_FILE)
+    return data["events"]
+
+
+def list_tasks() -> list[dict]:
+    """
+    Retrieve all scheduled tasks.
+
+    Returns:
+        A list of dictionaries representing tasks.
+    """
+    data = load_db(DB_FILE)
+    return data["tasks"]
+
+def find_free_slots(
+    date: str,
+    duration: float,
+    day_start: str,
+    day_end: str,
+) -> list[tuple[str, str]]:
+    """
+    Find all available time slots within a day that can fit a given duration.
+
+    Args:
+        date: Date to check in YYYY-MM-DD format.
+        duration: Required duration in hours.
+        day_start: Beginning of the scheduling window in HH:MM format.
+        day_end: End of the scheduling window in HH:MM format.
+
+    Returns:
+        A list of tuples containing the start and end time of each free slot.
+        Example:
+            [("08:00", "10:30"), ("14:00", "17:00")]
+    """
+    data = load_db(DB_FILE)
+    date = normalize_date(date)
+    events = [
+        event
+        for event in data["events"]
+        if normalize_date(event["date"]) == date
+    ]
+    events = sorted(events, key=lambda event: normalize_time(event["time"]))
+
+    day_start = datetime.strptime(normalize_time(day_start), "%H:%M")
+    day_end = datetime.strptime(normalize_time(day_end), "%H:%M")
+    duration = timedelta(hours=duration)
+
+    free_slots = []
+    current_time = day_start
+
+    for event in events:
+        event_start, event_end = get_event_window(event["time"], event["duration"])
+        
+        if event_start - current_time >= duration:
+            free_slots.append((current_time.strftime("%H:%M"),event_start.strftime("%H:%M")))
+
+        current_time = max(current_time, event_end)
+        
+    if day_end - current_time >= duration:
+        free_slots.append((current_time.strftime("%H:%M"), day_end.strftime("%H:%M")))
+
+    return free_slots
