@@ -2,22 +2,22 @@
   "tasks": [
     {
       "name": "physics assignemnt",
-      "deadline": "10th June",
+      "deadline": "2026-06-10",
       "priority": "urgent"
     },
     {
       "name": "ML quiz",
-      "deadline": "11th June",
+      "deadline": "2026-06-11",
       "priority": "medium"
     },
     {
       "name": "maths assignment",
-      "deadline": "10th June",
+      "deadline": "2026-06-10",
       "priority": "urgent"
     },
     {
       "name": "end sem exam",
-      "deadline": "13th June",
+      "deadline": "2026-06-13",
       "priority": "decent"
     },
     {
@@ -29,13 +29,13 @@
   "events": [
     {
       "name": "Class",
-      "date": "5th July",
-      "time": "9:00",
+      "date": "2026-07-05",
+      "time": "09:00",
       "duration": 1
     },
     {
       "name": "Meeting",
-      "date": "5th July",
+      "date": "2026-07-05",
       "time": "14:00",
       "duration": 1
     }
