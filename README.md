@@ -60,9 +60,7 @@ schedule-agent/
 +-- scheduler/
     +-- __init__.py
     +-- agent.py
-+-- docs/
-    +-- ROADMAP.md
-    +-- COMPETITION_WRITEUP_OUTLINE.md
+
 ```
 
 ## Tools Exposed to the Agent
