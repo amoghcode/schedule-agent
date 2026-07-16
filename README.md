@@ -1,6 +1,6 @@
 # Schedule Agent
 
-Schedule Agent is an AI-powered personal scheduling assistant built for the Kaggle AI Agents capstone project. It uses Google ADK to connect a Gemini-powered agent to deterministic Python tools for reading a calendar, adding events, adding tasks, and finding free time.
+Schedule Agent is an AI-powered personal scheduling assistant that uses Google ADK and Gemini to manage tasks, detect calendar conflicts, and find available time through natural language commands.
 
 The project focuses on a practical scheduling workflow: instead of only generating text, the agent can call real tools that inspect and update schedule data stored in `schedule.json`.
 
