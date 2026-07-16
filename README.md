@@ -73,7 +73,13 @@ schedule-agent/
 | `list_tasks` | Returns all saved tasks. |
 | `find_free_slots` | Finds available time windows on a specific date. |
 
-## Setup for Evaluators
+## Demo
+
+Below is an example interaction with the scheduling agent.
+
+![Schedule Agent Demo](assets/scheduler-demo.png)
+
+## Setup
 
 1. Clone the repository:
 
@@ -192,7 +198,7 @@ Dates use `YYYY-MM-DD`. Times use 24-hour `HH:MM`.
 
 - Storage is a local JSON file rather than a production database.
 - There is no Google Calendar or Telegram integration yet.
-- There is no web UI yet.
+- There is no web UI yet (except through adk web).
 - Automated tests are not included yet; `demo.py` is provided as a repeatable evaluator demo.
 
 ## Roadmap
@@ -200,7 +206,6 @@ Dates use `YYYY-MM-DD`. Times use 24-hour `HH:MM`.
 Near-term improvements:
 
 - Add automated tests for the scheduling functions.
-- Add a cleaner command-line interface.
 - Improve validation and error messages.
 - Add task-to-calendar scheduling.
 
@@ -210,9 +215,6 @@ Future integrations:
 - Telegram bot interface.
 - SQLite or cloud database storage.
 
-## Competition Notes
-
-This version intentionally focuses on a reliable local scheduling agent before adding external integrations. Google Calendar and Telegram are strong future directions, but the current submission prioritizes clear agent architecture, deterministic tool use, safe scheduling behavior, and reproducible evaluator setup.
 
 ## License
 
