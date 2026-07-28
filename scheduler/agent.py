@@ -71,7 +71,7 @@ Safety:
 
 session_service = InMemorySessionService()
 runner = Runner(
-    agent = root_agent,
+    agent = "root_agent",
     app_name="scheduler",
     session_service=session_service
 )
