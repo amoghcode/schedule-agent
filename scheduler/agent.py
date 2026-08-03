@@ -4,6 +4,7 @@ from google.adk.tools import FunctionTool
 from google.adk.agents import Agent
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
+from google.genai import types
 
 from dotenv import load_dotenv
 import os
@@ -70,8 +71,55 @@ Safety:
 )
 
 session_service = InMemorySessionService()
+
 runner = Runner(
-    agent = "root_agent",
+    agent=root_agent,
     app_name="scheduler",
-    session_service=session_service
+    session_service=session_service,
 )
+
+
+async def ask_scheduler(
+    message: str,
+    user_id: str,
+    session_id: str,
+) -> str:
+    """Send one user message to the scheduler and return its final response."""
+    session = await session_service.get_session(
+        app_name="scheduler",
+        user_id=user_id,
+        session_id=session_id,
+    )
+
+    if session is None:
+        await session_service.create_session(
+            app_name="scheduler",
+            user_id=user_id,
+            session_id=session_id,
+        )
+
+    content = types.Content(
+        role="user",
+        parts=[types.Part.from_text(text=message)],
+    )
+
+    final_text = ""
+
+    async for event in runner.run_async(
+        user_id=user_id,
+        session_id=session_id,
+        new_message=content,
+    ):
+        if not event.is_final_response() or not event.content:
+            continue
+
+        final_text = "".join(
+            part.text
+            for part in event.content.parts or []
+            if getattr(part, "text", None)
+        ).strip()
+
+    if not final_text:
+        raise RuntimeError("The scheduler returned no text response.")
+
+    return final_text
